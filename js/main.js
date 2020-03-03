@@ -1,3 +1,5 @@
+const output = document.querySelector(".outputField");
+
 const getCity = async () => {
   const baseURI =
     "https://api.openaq.org/v1/measurements?country=PL&limit=10&order_by=value&sort=desc";
@@ -5,7 +7,9 @@ const getCity = async () => {
   const response = await fetch(baseURI);
   const data = await response.json();
 
-  console.log(data);
+  output.innerHTML = `
+  <h1>Wynik zapytania</h1>
+  `;
 };
 getCity();
 

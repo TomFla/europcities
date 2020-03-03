@@ -9,7 +9,6 @@ body {
 }
 
 .wrapper {
-    display: flex;
     position: relative;
     justify-content: center;
     align-items: center;
@@ -25,9 +24,6 @@ body {
 }
 
 .formDiv {
-    position: absolute;
-    top: 10%;
-    transform: translateX(-50%);
     margin: 0 auto;
     width: 100%;
     padding: 20px;
@@ -55,7 +51,7 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid rgb(88, 56, 20);
     min-width: 350px;
 }
 
@@ -74,4 +70,17 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     opacity: .88;
+}
+
+.outputField {
+    margin: 0 auto;
+    text-align: center;
+    padding: 50px;
+    max-width: 900px;
+    background-color: rgba(131, 111, 24, .2);
+    border-radius: 10px;
+}
+
+.outputField h1 {
+    color: rgb(88, 56, 20)
 }
