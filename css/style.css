@@ -16,11 +16,12 @@ body {
     margin: 0 auto;
     width: 100vw;
     min-height: 100vh;
-    background-image: url("/img/1-earth.jpg");
+    background-color: rgb(223, 204, 170);
+    /* background-image: url("/img/1-earth.jpg");
     background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: bottom;
-    background-size: cover;
+    background-size: cover; */
 }
 
 .formDiv {
@@ -34,7 +35,7 @@ body {
 }
 
 h1 {
-    color: white;
+    color: #333;
     text-transform: uppercase;
     letter-spacing: 5px;
     padding: 15px 0;
@@ -45,7 +46,7 @@ input[type="text"] {
     padding: 5px;
     font-size: 16px;
     line-height: 24px;
-    color: #fff;
+    color: #333;
     min-width: 300px;
     border: none;
     background: none;
