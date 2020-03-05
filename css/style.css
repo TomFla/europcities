@@ -85,3 +85,9 @@ input[type="submit"]:hover {
 .outputField h1 {
     color: rgb(88, 56, 20)
 }
+
+.outputField li {
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
