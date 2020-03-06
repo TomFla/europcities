@@ -24,10 +24,15 @@ const getCountry = async country => {
 
 const updateUi = async data => {
   for (let i = 0; i < data.results.length; i++) {
-    const html = document.createElement("li");
+    const html = document.createElement("li.list");
     html.innerHTML = `
          
-         <h4>Miasto: <a href="#">${data.results[i].city}</a> Pomiar zanieczyszczenia: <span>${data.results[i].value}</span></h4>
+         <div class="templetResult"><h4>${i +
+           1}). Miasto: </h4><h4><a href="#" class="upp">${
+      data.results[i].city
+    }</a></h4><h4>Pomiar zanieczyszczenia: </h4><span>${data.results[
+      i
+    ].value.toFixed(2)}</span> <p>µg/m³</p></div)
        `;
     output.append(html);
   }
