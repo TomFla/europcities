@@ -10,12 +10,27 @@ form.addEventListener("submit", e => {
   return country;
 });
 
+// tablica lub obiekt z czterema krajami jako klucze i prefixem jako wartość
+// funcja, która sprawdza wartość inputa z tablicą i jeśli dopasuje klucz przypisuje wartość do zmiennej i ją zwraca
+// ====================================================================
+// const countryPrefix = {
+//   Poland: "PL",
+//   Italy: "IT",
+//   France: "FR"
+// };
+
+// const countryToPrefix = country => {
+//   console.log(country);
+// };
+// countryToPrefix(country);
+
+// =====================================================================
+
 const getCountry = async country => {
-  const ask = `https://api.openaq.org/v1/measurements?country=${country}&limit=10&order_by=value&sort=desc`;
+  const ask = `https://api.openaq.org/v1/measurements?country=${country}&limit=10&order_by=value&sort=desc&parameter=pm25`;
   const response = await fetch(ask);
   const data = await response.json();
 
-  console.log(country); // <-- zwraca undefine, dlaczego ?:(
   console.log(data);
 
   updateUi(data);
@@ -30,9 +45,9 @@ const updateUi = async data => {
          <div class="templetResult"><h4>${i +
            1}). Miasto: </h4><h4><a href="#" class="upp">${
       data.results[i].city
-    }</a></h4><h4>Pomiar zanieczyszczenia: </h4><span>${data.results[
-      i
-    ].value.toFixed(2)}</span> <p>µg/m³</p></div)
+    }</a></h4><h4>Pomiar stężenia pyłów ${
+      data.results[i].parameter
+    }: </h4><span>${data.results[i].value.toFixed(2)}</span> <p>µg/m³</p></div)
        `;
     output.append(html);
   }
@@ -41,5 +56,7 @@ const updateUi = async data => {
 // 1 - ogarnąć API openaq. OK
 // 2 - pobrać dane z api i wyświetplić na stronie `${}`. OK
 // 3 - pobrać dane do zapytania z inputa do zapytania API. OK
-// 4 - stworzyć drugą funkcję z zapytaniem do API mediaWiki.
-// 5 - wyświetlić dane z API na tronie. OK* wyświetla tylko dane z openaq, trzeba dodtać API mediawiki!
+// 4 - wyświetlić dane z API na stronie. OK
+// 5 - przetłumaczyć wartość inputa na prefix danego kraju
+// 6 - stworzyć drugą funkcję z zapytaniem do API mediaWiki.
+// 7 - wyświetla dane API mediawiki!
