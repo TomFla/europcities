@@ -5,9 +5,14 @@ let prefix;
 form.addEventListener("submit", e => {
   e.preventDefault();
 
-  const country = form.countries.value;
+  const country = form.countries.value.trim();
 
-  if (country === "Polska") {
+  // if sprawdzający czy istnieje div o clasie
+  // if (html) {
+  //   removeUI();
+  // }
+
+  if (country === "Poland") {
     prefix = "PL";
   } else if (country === "Deutchland") {
     prefix = "DE";
@@ -18,6 +23,9 @@ form.addEventListener("submit", e => {
   }
   // Needs to be change into object in some time :)
   getCountry(prefix);
+  form.reset();
+  const removeUI = () => html.removeElement("div");
+  removeUI();
   return prefix;
 });
 
@@ -32,7 +40,7 @@ const getCountry = async prefix => {
 
 const updateUi = async data => {
   for (let i = 0; i < data.results.length; i++) {
-    const html = document.createElement("li.list");
+    const html = document.createElement("li");
     html.innerHTML = `
          
          <div class="templetResult"><h4>${i +
@@ -50,6 +58,6 @@ const updateUi = async data => {
 // 2 - pobrać dane z api i wyświetplić na stronie `${}`. OK
 // 3 - pobrać dane do zapytania z inputa do zapytania API. OK
 // 4 - wyświetlić dane z API na stronie. OK
-// 5 - przetłumaczyć wartość inputa na prefix danego kraju
+// 5 - przetłumaczyć wartość inputa na prefix danego kraju OK
 // 6 - stworzyć drugą funkcję z zapytaniem do API mediaWiki.
 // 7 - wyświetla dane API mediawiki!
