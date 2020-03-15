@@ -1,13 +1,26 @@
 const form = document.querySelector(".form");
 const output = document.querySelector(".outputField");
+let prefix;
 
 form.addEventListener("submit", e => {
   e.preventDefault();
 
   const country = form.countries.value;
-  getCountry(country);
 
-  return country;
+  if (country === "Polska") {
+    prefix = "PL";
+  } else if (country === "Deutchland") {
+    prefix = "DE";
+  } else if (country === "Italy") {
+    prefix = "IT";
+  } else if (country === "Austria") {
+    prefix = "AU";
+  }
+  // Needs to be change into object in some time :)
+
+  console.log(`prefix to:${prefix}`);
+  getCountry(prefix);
+  return prefix;
 });
 
 // tablica lub obiekt z czterema krajami jako klucze i prefixem jako wartość
@@ -20,18 +33,20 @@ form.addEventListener("submit", e => {
 // };
 
 // const countryToPrefix = country => {
-//   console.log(country);
+//   console.log(country);  jak z
 // };
 // countryToPrefix(country);
 
 // =====================================================================
 
-const getCountry = async country => {
-  const ask = `https://api.openaq.org/v1/measurements?country=${country}&limit=10&order_by=value&sort=desc&parameter=pm25`;
+const getCountry = async prefix => {
+  const ask = `https://api.openaq.org/v1/measurements?country=${prefix}&limit=10&order_by=value&sort=desc&parameter=pm25`;
   const response = await fetch(ask);
   const data = await response.json();
 
   console.log(data);
+  console.log(ask);
+  console.log(` w getCounty prefix to: ${prefix}`);
 
   updateUi(data);
   return data;
