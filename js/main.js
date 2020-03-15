@@ -17,36 +17,14 @@ form.addEventListener("submit", e => {
     prefix = "AU";
   }
   // Needs to be change into object in some time :)
-
-  console.log(`prefix to:${prefix}`);
   getCountry(prefix);
   return prefix;
 });
-
-// tablica lub obiekt z czterema krajami jako klucze i prefixem jako wartość
-// funcja, która sprawdza wartość inputa z tablicą i jeśli dopasuje klucz przypisuje wartość do zmiennej i ją zwraca
-// ====================================================================
-// const countryPrefix = {
-//   Poland: "PL",
-//   Italy: "IT",
-//   France: "FR"
-// };
-
-// const countryToPrefix = country => {
-//   console.log(country);  jak z
-// };
-// countryToPrefix(country);
-
-// =====================================================================
 
 const getCountry = async prefix => {
   const ask = `https://api.openaq.org/v1/measurements?country=${prefix}&limit=10&order_by=value&sort=desc&parameter=pm25`;
   const response = await fetch(ask);
   const data = await response.json();
-
-  console.log(data);
-  console.log(ask);
-  console.log(` w getCounty prefix to: ${prefix}`);
 
   updateUi(data);
   return data;
