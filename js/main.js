@@ -1,16 +1,12 @@
 const form = document.querySelector(".form");
 const output = document.querySelector(".outputField");
+const templet = document.querySelector(".output");
 let prefix;
 
 form.addEventListener("submit", e => {
   e.preventDefault();
 
   const country = form.countries.value.trim();
-
-  // if sprawdzający czy istnieje div o clasie
-  // if (html) {
-  //   removeUI();
-  // }
 
   if (country === "Poland") {
     prefix = "PL";
@@ -24,8 +20,7 @@ form.addEventListener("submit", e => {
   // Needs to be change into object in some time :)
   getCountry(prefix);
   form.reset();
-  const removeUI = () => html.removeElement("div");
-  removeUI();
+
   return prefix;
 });
 
@@ -50,7 +45,7 @@ const updateUi = async data => {
       data.results[i].parameter
     }: </h4><span>${data.results[i].value.toFixed(2)}</span> <p>µg/m³</p></div)
        `;
-    output.append(html);
+    templet.append(html);
   }
 };
 
