@@ -1,6 +1,7 @@
 const form = document.querySelector(".form");
-const output = document.querySelector(".outputField");
-const templet = document.querySelector(".output");
+const templet = document.querySelector(".cityLi");
+let list = null;
+
 let prefix;
 
 form.addEventListener("submit", e => {
@@ -20,7 +21,6 @@ form.addEventListener("submit", e => {
   // Needs to be change into object in some time :)
   getCountry(prefix);
   form.reset();
-
   return prefix;
 });
 
@@ -34,6 +34,8 @@ const getCountry = async prefix => {
 };
 
 const updateUi = async data => {
+  clearUi(list);
+
   for (let i = 0; i < data.results.length; i++) {
     const html = document.createElement("li");
     html.innerHTML = `
@@ -46,6 +48,15 @@ const updateUi = async data => {
     }: </h4><span>${data.results[i].value.toFixed(2)}</span> <p>µg/m³</p></div)
        `;
     templet.append(html);
+  }
+  list = document.querySelectorAll("li");
+};
+
+const clearUi = () => {
+  if (list) {
+    list.forEach(item => {
+      item.remove();
+    });
   }
 };
 
